@@ -1,3 +1,9 @@
+"""
+Module: datetime utilities
+
+This module provides utilities related to date and time handling using the datetime module.
+"""
+
 from datetime import datetime
 
 def get_days_from_today(date: str) -> int:
@@ -14,9 +20,9 @@ def get_days_from_today(date: str) -> int:
         today_date = datetime.now()
         date_obj = datetime.strptime(date, "%Y-%m-%d")
         delta = today_date - date_obj
-        
+
         return delta.days
-    
+
     except ValueError:
         return -1
 

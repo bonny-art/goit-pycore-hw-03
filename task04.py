@@ -1,11 +1,20 @@
+"""
+Module: datetime utilities
+
+This module provides utilities related to date and time handling using datetime,
+timedelta, and date objects.
+"""
+
 from datetime import datetime, timedelta, date
+
 from typing import List, Dict
 
 
 
 def is_date_within_days(target_date: datetime, days: int) -> bool:
     """
-    Check if a given date (ignoring the year) falls within the next 'days' days from today, including today.
+    Check if a given date (ignoring the year) falls within the next 'days' days from today,
+    including today.
     If the date has already passed this year, consider the date for the next year.
 
     Parameters:
@@ -16,14 +25,14 @@ def is_date_within_days(target_date: datetime, days: int) -> bool:
     bool: True if the date is within the next 'days' days including today, False otherwise.
     """
     today_date = datetime.now().date()
-    
+
     date_this_year = date(today_date.year, target_date.month, target_date.day)
-    
+
     if date_this_year < today_date:
         target_date = date(today_date.year + 1, target_date.month, target_date.day)
     else:
         target_date = date_this_year
-    
+
     return today_date <= target_date <= (today_date + timedelta(days=days))
 
 
@@ -67,7 +76,7 @@ def get_upcoming_birthdays(users: List[Dict[str, str]]) -> List[Dict[str, str]]:
 
                 current_year = datetime.now().year
                 congratulation_date = date(current_year, user_birthday.month, user_birthday.day)
-                
+
                 congratulation_date = adjust_to_weekday(congratulation_date)
 
                 upcoming_birthdays_list.append({

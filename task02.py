@@ -1,7 +1,15 @@
+"""
+Module: Random utilities
+
+This module provides utilities related to random number generation
+and random choices using the random module.
+"""
+
 import random
+
 from typing import List
 
-def get_numbers_ticket(min: int, max: int, quantity: int) -> List[int]:
+def get_numbers_ticket(min_number: int, max_number: int, quantity: int) -> List[int]:
     """
     Generate a sorted list of unique random numbers for a ticket.
 
@@ -13,14 +21,14 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> List[int]:
     Returns:
     List[int]: A sorted list of unique random numbers, or an empty list if parameters are invalid.
     """
-    
-    if not (1 <= min <= max <= 1000) or not (min <= quantity <= max - min + 1):
+
+    if not 1 <= min_number <= max_number <= 1000 or not min_number <= quantity <= max_number - min_number + 1:
         return []
 
     picking = set()
     while len(picking) < quantity:
-        picking.add(random.randint(min, max))
-    
+        picking.add(random.randint(min_number, max_number))
+
     return sorted(picking)
 
 # Example usage

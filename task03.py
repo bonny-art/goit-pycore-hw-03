@@ -1,4 +1,11 @@
+"""
+Module: re utilities
+
+This module provides utility functions related to regular expressions (re).
+"""
+
 import re
+
 from typing import List
 
 def normalize_phone(phone_number: str) -> str:
@@ -13,17 +20,17 @@ def normalize_phone(phone_number: str) -> str:
     """
     pattern = r"\D"
     replacement = ""
-    
+
     phone_number = re.sub(pattern, replacement, phone_number)
 
     if len(phone_number) == 12:
         return f'+{phone_number}'
-    elif len(phone_number) == 11:
+    if len(phone_number) == 11:
         return f'+3{phone_number}'
-    elif len(phone_number) == 10:
+    if len(phone_number) == 10:
         return f'+38{phone_number}'
-    else:
-        return 'Invalid phone number'
+
+    return 'Invalid phone number'
 
 # Example usage
 raw_numbers: List[str] = [
@@ -41,7 +48,7 @@ raw_numbers: List[str] = [
     "123-456",
     "38050123ABCD",
     "\\380501234567"
-    
+
 ]
 
 sanitized_numbers: List[str] = [normalize_phone(num) for num in raw_numbers]
